@@ -57,7 +57,7 @@ const Navbar: React.FC = () => {
 
                 {/* Logo - Leftmost Side (moved by flex-row-reverse) */}
                 <Link to="/" className="pointer-events-auto relative z-10 hover:opacity-90 transition-opacity">
-                    <div className="flex w-[120px] h-[120px] items-center justify-center bg-[#ff5500] p-4">
+                    <div className="flex w-[100px] h-[100px] items-center justify-center bg-[#ff5500] p-4">
                         <img
                             src={avekaLogo}
                             alt="Aveka Logo"
