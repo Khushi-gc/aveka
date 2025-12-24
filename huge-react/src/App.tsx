@@ -52,14 +52,10 @@ import Loader from './components/Loader';
 function App() {
   const [loading, setLoading] = React.useState(true);
 
-  if (loading) {
-    return <Loader onLoadingComplete={() => setLoading(false)} />;
-  }
-
   return (
-
     <Router>
       <ScrollToTop />
+      {loading && <Loader onLoadingComplete={() => setLoading(false)} />}
       <div className="bg-huge-black min-h-screen text-huge-white font-sans">
         <Navbar />
         <Routes>
