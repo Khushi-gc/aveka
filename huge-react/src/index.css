@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --color-huge-black: #000000;
+  --color-huge-white: #ffffff;
+  --color-huge-magenta: #ff0090;
+  --color-huge-green: #48ff65;
+  --color-huge-darkGray: #3d3d3d;
+  --color-huge-darkGray2: #0d1012;
+  --color-huge-lightGray: #e7ecf2;
+  --color-huge-grayText: #999999;
+  --font-monument: "MonumentGrotesk", sans-serif;
+}
+
+@font-face {
+  font-family: 'MonumentGrotesk';
+  src: url('/fonts/font1.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MonumentGrotesk';
+  src: url('/fonts/font2.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+body {
+  background-color: var(--color-huge-black);
+  color: var(--color-huge-white);
+  font-family: var(--font-monument);
+  overflow-x: hidden;
+}
+
+/* Scrollbar hiding */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
