@@ -47,7 +47,15 @@ const Home = () => {
   );
 }
 
+import Loader from './components/Loader';
+
 function App() {
+  const [loading, setLoading] = React.useState(true);
+
+  if (loading) {
+    return <Loader onLoadingComplete={() => setLoading(false)} />;
+  }
+
   return (
 
     <Router>
