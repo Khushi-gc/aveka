@@ -16,6 +16,7 @@ const Loader: React.FC<LoaderProps> = ({ onLoadingComplete }) => {
     const leftCurtainRef = useRef<HTMLDivElement>(null);
     const rightCurtainRef = useRef<HTMLDivElement>(null);
     const squareRef = useRef<HTMLDivElement>(null);
+    const textRef = useRef<HTMLSpanElement>(null);
 
     useEffect(() => {
         const duration = 2000;
@@ -45,60 +46,71 @@ const Loader: React.FC<LoaderProps> = ({ onLoadingComplete }) => {
                     onComplete: () => onLoadingComplete()
                 });
 
-                // 2. Fade out Phase 1 Container (Percentage & Hello + Black BG)
+                // 1. Fade out Phase 1 Container (Percentage & Hello + Black BG)
                 tl.to(phaseOneRef.current, {
                     opacity: 0,
                     duration: 0.5,
                     ease: "power2.inOut"
                 })
 
-                    // 3. Reveal Text on Curtains (Layer 2)
+                    // 2. Reveal Square behind curtains (2rem size)
+                    .fromTo(squareRef.current,
+                        { scale: 0, opacity: 0 },
+                        {
+                            scale: 1,
+                            opacity: 1,
+                            duration: 0.4,
+                            ease: "power2.out"
+                        }
+                    )
+
+                    // 3. Reveal Text on Curtains
                     .fromTo(".curtain-text",
                         { opacity: 0 },
                         { opacity: 1, duration: 0.3 }
-                    )
+                        , "-=0.2")
                     // Reveal Vertical Lines
                     .fromTo(".curtain-line",
                         { height: 0 },
                         { height: "100vh", duration: 0.5, ease: "power2.inOut" }
                     )
 
-                    // 4. Split Curtains (Move far enough to be off screen)
+                    // 4. Split Curtains to reveal square fully
                     .to(leftCurtainRef.current, {
                         xPercent: -100,
-                        duration: 1.5,
-                        ease: "power4.inOut"
+                        duration: 1.2,
+                        ease: "power3.inOut"
                     }, "split")
                     .to(rightCurtainRef.current, {
                         xPercent: 100,
-                        duration: 1.5,
-                        ease: "power4.inOut"
+                        duration: 1.2,
+                        ease: "power3.inOut"
                     }, "split")
 
-                    // 5. Square Pop Up (Elastic/Back effect)
-                    // Appears in the center as curtains split
-                    .fromTo(squareRef.current,
-                        { scale: 0, rotation: -10, opacity: 0 },
-                        {
-                            scale: 1,
-                            rotation: 0,
-                            opacity: 1,
-                            duration: 1.0,
-                            ease: "elastic.out(1, 0.5)"
-                        },
-                        "split+=0.2"
-                    )
+                    // 5. Square scales from 2rem to 4rem as curtains split
+                    .to(squareRef.current, {
+                        width: "13rem",
+                        height: "13rem",
+                        duration: 0.6,
+                        ease: "power2.inOut"
+                    }, "split")
+                    // Scale text proportionally
+                    .to(textRef.current, {
+                        fontSize: "1rem",
+                        duration: 0.6,
+                        ease: "power2.inOut"
+                    }, "split")
 
-                    // 6. ZOOM IN - REVERTED TO USER REQUEST OF "POP UP" WITHOUT FILLING SCREEN?
-                    // User said: "remove the 5s pause... remove the black screen" and "square on the hero page should pop up"
-                    // If we zoom to 100, we fill screen black/magenta. 
-                    // Let's just fade out the curtain layer to reveal App?
-                    // Actually, if we just fade out the container now, we see the App.
-                    .to(containerRef.current, {
-                        opacity: 0,
-                        duration: 0.5,
-                        delay: 0.5
-                    });
+
+                    // Scale text to match zoom via transform instead of font-size for better performance/smoothing? 
+                    // Using font-size animation can be jerky. The user provided code uses fontSize. I'll stick to it.
+                    .to(textRef.current, {
+                        fontSize: "2rem",
+                        duration: 1.0,
+                        ease: "power2.inOut"
+                    }, "-=1.0")
+
+
 
             }, containerRef);
 
@@ -107,7 +119,7 @@ const Loader: React.FC<LoaderProps> = ({ onLoadingComplete }) => {
     }, [animationPhase, onLoadingComplete]);
 
     return (
-        <div ref={containerRef} className="fixed inset-0 z-[100] overflow-hidden select-none cursor-wait pointer-events-none">
+        <div ref={containerRef} className="fixed inset-0 z-[100] overflow-hidden select-none pointer-events-none">
             {/* Phase 1: Percentage & Hello - Solid Background */}
             <div ref={phaseOneRef} className="absolute inset-0 flex items-center justify-center bg-black w-full h-full z-30">
                 <div
@@ -130,7 +142,22 @@ const Loader: React.FC<LoaderProps> = ({ onLoadingComplete }) => {
                 </div>
             </div>
 
-            {/* Split Curtains - Background Grey/Black */}
+            {/* Center Square - positioned BEHIND curtains (z-10) - starts at 2rem */}
+            <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                <div
+                    ref={squareRef}
+                    className="bg-huge-magenta flex items-center justify-center opacity-0 overflow-hidden"
+                    style={{
+                        transformStyle: 'preserve-3d',
+                        width: '2rem',
+                        height: '2rem'
+                    }}
+                >
+                    <span ref={textRef} className="text-black font-monument font-bold whitespace-nowrap" style={{ fontSize: '0.5rem' }}>Aveka.ai</span>
+                </div>
+            </div>
+
+            {/* Split Curtains - ABOVE square (z-20) so square shows behind */}
             <div className="absolute inset-0 flex w-full h-full pointer-events-none z-20">
                 {/* Left Curtain */}
                 <div
@@ -140,7 +167,7 @@ const Loader: React.FC<LoaderProps> = ({ onLoadingComplete }) => {
                     <span className="curtain-text text-white text-6xl md:text-8xl font-medium font-monument mr-4 md:mr-8 whitespace-nowrap opacity-0">
                         This
                     </span>
-                    <div className="curtain-line w-[1px] bg-white h-0 text-white"></div>
+                    <div className="curtain-line w-[1px] bg-white h-0"></div>
                 </div>
 
                 {/* Right Curtain */}
@@ -148,20 +175,10 @@ const Loader: React.FC<LoaderProps> = ({ onLoadingComplete }) => {
                     ref={rightCurtainRef}
                     className="w-1/2 h-full bg-[#111111] relative flex items-center justify-start"
                 >
-                    <div className="curtain-line w-[1px] bg-white h-0 text-white"></div>
+                    <div className="curtain-line w-[1px] bg-white h-0"></div>
                     <span className="curtain-text text-white text-6xl md:text-8xl font-medium font-monument ml-4 md:ml-8 whitespace-nowrap opacity-0">
                         is
                     </span>
-                </div>
-            </div>
-
-            {/* Central Square - Independent Layer */}
-            <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-                <div
-                    ref={squareRef}
-                    className="w-32 h-32 md:w-48 md:h-48 bg-huge-magenta flex items-center justify-center opacity-0"
-                >
-                    <span className="text-black font-monument font-bold text-xl md:text-2xl">Huge</span>
                 </div>
             </div>
         </div>
