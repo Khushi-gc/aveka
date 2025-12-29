@@ -39,19 +39,19 @@ const services = [
 
 const FlipButton: React.FC<{ text: string }> = ({ text }) => {
     return (
-        <button className="group relative h-[64px] min-w-[157px] overflow-hidden transition-all duration-300">
+        <button className="group relative h-[56px] min-w-[140px] overflow-hidden transition-all duration-300">
             <div className="js-faces-wrapper h-full w-full transition-transform duration-[0.4s] ease-out transform group-hover:rotate-x-90 preserve-3d">
                 {/* Front Face */}
-                <div className="absolute inset-0 flex items-center justify-center gap-x-2 px-6 bg-huge-black text-huge-white backface-hidden">
+                <div className="absolute inset-0 flex items-center justify-center gap-x-2 px-5 bg-huge-black text-huge-white backface-hidden">
                     <span className="text-sm font-bold uppercase tracking-widest">{text}</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" fill="white" className="fill-current">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" fill="white" className="fill-current">
                         <path fillRule="evenodd" d="M11.648 6.321h14.893v14.892h-1.5V8.823L8.724 24.394h12.49v1.5H6.322V11h1.5v12.18L23.918 7.82h-12.27v-1.5Z" clip-rule="evenodd" />
                     </svg>
                 </div>
                 {/* Bottom Face */}
-                <div className="absolute inset-0 flex items-center justify-center gap-x-2 px-6 bg-huge-green text-huge-black backface-hidden translate-y-full -rotate-x-90 origin-top">
+                <div className="absolute inset-0 flex items-center justify-center gap-x-2 px-5 bg-huge-green text-huge-black backface-hidden translate-y-full -rotate-x-90 origin-top">
                     <span className="text-sm font-bold uppercase tracking-widest">{text}</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" fill="black" className="fill-current">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" fill="black" className="fill-current">
                         <path fillRule="evenodd" d="M11.648 6.321h14.893v14.892h-1.5V8.823L8.724 24.394h12.49v1.5H6.322V11h1.5v12.18L23.918 7.82h-12.27v-1.5Z" clip-rule="evenodd" />
                     </svg>
                 </div>
@@ -129,41 +129,41 @@ const Services: React.FC = () => {
             <div className="absolute inset-0 h-full w-full bg-huge-white" />
 
             {/* Header */}
-            <header className="relative py-[176px] md:pt-[248px] px-6 md:px-12 xl:px-24">
-                <div className="mb-[112px]">
-                    <h2 className="js-section-title text-[15vw] md:text-[12vw] font-bold tracking-tighter leading-none uppercase">
+            <header className="relative py-[32px] md:pt-[40px] px-6 md:px-12 xl:px-24 flex flex-col items-center text-center">
+                <div className="mb-[12px]">
+                    <h2 className="js-section-title text-4xl md:text-6xl font-bold tracking-tighter leading-none uppercase">
                         {splitToWords("What we do")}
                         <span className="hidden md:inline-block">&nbsp;—</span>
                     </h2>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-x-6">
-                    <h3 className="js-section-description col-span-full md:col-start-4 md:col-span-8 xl:col-start-7 xl:col-span-6 text-2xl md:text-4xl xl:text-5xl font-medium leading-tight">
+                <div className="w-full max-w-2xl mx-auto">
+                    <h3 className="js-section-description text-base md:text-lg xl:text-xl font-medium leading-tight">
                         {splitToWords("We deliver end-to-end solutions built for scale and performance.")}
                     </h3>
                 </div>
             </header>
 
             {/* Articles Wrapper / Horizontal Scroll Area */}
-            <div ref={containerRef} className="relative w-full xl:h-screen flex items-center">
+            <div ref={containerRef} className="relative w-full xl:h-[75vh] flex items-start pt-2">
                 <ul
                     ref={scrollRef}
-                    className="flex flex-col xl:flex-row w-full xl:w-max xl:h-full items-center gap-24 xl:gap-[40px] px-6 md:px-12 xl:px-0 xl:pl-24 xl:pr-96"
+                    className="flex flex-col xl:flex-row w-full xl:w-max xl:h-full items-start gap-12 xl:gap-[100px] px-6 md:px-12 xl:px-0 xl:pl-12 xl:pr-[50vw]"
                 >
                     {services.map((service, i) => (
-                        <li key={i} className="js-slide w-full xl:w-screen xl:h-full shrink-0 flex items-center pt-24 xl:pt-0 pb-24 xl:pb-0">
-                            <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 w-full">
+                        <li key={i} className="js-slide w-full xl:w-[85vw] xl:h-full shrink-0 flex items-start xl:pt-10">
+                            <div className="grid grid-cols-1 md:grid-cols-12 gap-x-4 w-full">
                                 {/* Service Info Title */}
-                                <div className="col-span-full mb-[64px]">
-                                    <h2 className="text-4xl md:text-[6vw] xl:text-[7vw] font-bold tracking-tighter leading-none flex items-start gap-x-4">
+                                <div className="col-span-full mb-[24px]">
+                                    <h2 className="text-2xl md:text-3xl xl:text-4xl font-bold tracking-tighter leading-none flex items-start gap-x-2">
                                         {service.title}
-                                        <span className="text-xl md:text-2xl text-huge-grayText align-top">
+                                        <span className="text-base md:text-lg text-huge-grayText align-top">
                                             {service.num}
                                         </span>
                                     </h2>
                                 </div>
 
-                                {/* Slide Image Section */}
-                                <div className="col-span-full md:col-span-7 xl:col-span-9 aspect-video overflow-hidden bg-gray-100">
+                                {/* Slide Image Section - Compact */}
+                                <div className="col-span-full md:col-span-6 aspect-video overflow-hidden bg-gray-100">
                                     <img
                                         src={service.img}
                                         alt={service.title}
@@ -171,29 +171,31 @@ const Services: React.FC = () => {
                                     />
                                 </div>
 
-                                {/* Description & Action Section */}
-                                <div className="col-span-full md:col-span-5 xl:col-span-3 flex flex-col justify-end pt-12 xl:pt-0 xl:row-start-2 xl:col-start-10">
-                                    <p className="text-xl md:text-2xl xl:text-3xl font-medium leading-relaxed mb-12">
+                                {/* Description & Action Section - Compact & Closer */}
+                                <div className="col-span-full md:col-span-6 flex flex-col justify-between h-full pt-4 md:pt-0">
+                                    <p className="text-lg md:text-xl xl:text-2xl font-medium leading-relaxed mb-6">
                                         {service.desc}
                                     </p>
-                                    <div className="mt-8">
+                                    <div className="mt-auto">
                                         <FlipButton text="Explore" />
                                     </div>
                                 </div>
                             </div>
+
+
                         </li>
                     ))}
                 </ul>
             </div>
 
             {/* Sticky mobile spacing indicator if needed */}
-            <div className="h-[100px] xl:hidden w-full" />
+            <div className="h-[80px] xl:hidden w-full" />
 
             {/* Global Noise Overlay */}
             <div className="absolute inset-0 pointer-events-none opacity-[0.03] z-[10]"
                 style={{ backgroundImage: "url('https://framerusercontent.com/images/6mcf62RlDfRfU61Yg5vb2pefpi4.png')", backgroundRepeat: 'repeat' }}
             />
-        </section>
+        </section >
     );
 };
 

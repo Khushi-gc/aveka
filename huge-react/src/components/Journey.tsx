@@ -113,7 +113,7 @@ const Journey: React.FC = () => {
                 duration: 1,
                 ease: "power2.inOut"
             }, "-=0.5")
-                .to(".journey-card", {
+                .to(".journey-card, .journey-card > div", {
                     borderRadius: "20px",
                     duration: 1,
                     ease: "power2.inOut"
@@ -167,7 +167,7 @@ const Journey: React.FC = () => {
 
             {/* Sticky Section */}
             <div ref={stickyRef} className="min-h-screen flex flex-col justify-center items-center relative py-20 lg:py-0">
-                <div className="lg:absolute lg:top-[12%] lg:left-1/2 lg:-translate-x-1/2 text-center z-10 w-full px-6 mb-12 lg:mb-0">
+                <div className="lg:absolute lg:top-[5%] lg:left-1/2 lg:-translate-x-1/2 text-center z-10 w-full px-6 mb-12 lg:mb-0">
                     <h2 ref={headerRef} className="text-4xl md:text-7xl font-light text-huge-white leading-tight">
                         {/* Split text into spans for high-fidelity entrance */}
                         <span className="inline-block whitespace-nowrap">
@@ -209,7 +209,7 @@ const Journey: React.FC = () => {
                     </h2>
                 </div>
 
-                <div ref={cardContainerRef} className="relative w-[90%] lg:w-[85%] flex flex-col lg:flex-row perspective-[1200px] z-0 gap-10 lg:gap-0 lg:mt-20">
+                <div ref={cardContainerRef} className="relative w-[90%] lg:w-[85%] flex flex-col lg:flex-row perspective-[1200px] z-0 gap-10 lg:gap-0 lg:mt-32">
                     {/* Card 1 */}
                     <div className="journey-card group relative flex-1 aspect-[5/7] lg:aspect-auto lg:h-[60vh] perspective-[1200px] preserve-3d">
                         <div className="absolute inset-0 backface-hidden lg:rounded-l-[20px] rounded-[20px] lg:rounded-r-none overflow-hidden">

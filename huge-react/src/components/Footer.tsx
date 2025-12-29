@@ -82,7 +82,7 @@ const Footer: React.FC = () => {
             {/* BIG BRAND TYPOGRAPHY */}
             <div className="relative w-full border-t border-white/10 pt-12 overflow-hidden">
                 <div className="js-huge-brand text-[25vw] font-bold leading-none tracking-tighter text-huge-magenta font-monument select-none -mb-[0.1em]">
-                    Huge
+                    Aveka.ai
                 </div>
             </div>
 
@@ -117,7 +117,7 @@ const Footer: React.FC = () => {
                             <Link to="/legal-notices" className="hover:text-white transition-colors">Legal Notices</Link>
                             <Link to="/newsletter" className="hover:text-white transition-colors">Newsletter</Link>
                         </div>
-                        <p className="js-footer-link">© 2025 Huge. All rights reserved.</p>
+                        <p className="js-footer-link">© 2025 Aveka.ai. All rights reserved.</p>
                     </div>
                 </div>
 

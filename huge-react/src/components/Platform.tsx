@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 const Platform: React.FC = () => {
     const sectionRef = useRef<HTMLElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
-    const contentRef = useRef<HTMLDivElement>(null);
+
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -94,13 +94,7 @@ const Platform: React.FC = () => {
 
                     {/* Logo & Description */}
                     <div className="col-span-full md:col-start-4 md:col-span-8 xl:col-start-6 xl:col-span-6 flex flex-col md:flex-row gap-x-16 items-start">
-                        <div className="js-logo shrink-0 w-[112px] h-[112px] mb-8 md:mb-0">
-                            <img
-                                src="https://res.cloudinary.com/hugeinc-web/image/upload/f_auto,c_limit,w_640,q_auto/v1730126015/huge-live_xcok5j"
-                                alt="Huge Live Logo"
-                                className="w-full h-full object-contain"
-                            />
-                        </div>
+
                         <div className="js-platform-desc flex flex-col gap-y-6">
                             <p className="text-2xl md:text-3xl xl:text-4xl font-medium leading-tight">
                                 Living Intelligence Value Engine <span className="text-huge-grayText">—</span>

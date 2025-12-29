@@ -292,7 +292,7 @@ const CaseStudyDetail: React.FC<{ work: WorkItem; onClose: () => void }> = ({ wo
 const Work: React.FC = () => {
     const triggerRef = useRef<HTMLDivElement>(null);
     const cursorRef = useRef<HTMLDivElement>(null);
-    const [activeIdx, setActiveIdx] = useState(0);
+
     const [selectedWork, setSelectedWork] = useState<WorkItem | null>(null);
 
     useEffect(() => {
@@ -317,7 +317,7 @@ const Work: React.FC = () => {
                     end: `+=${cards.length * 100}%`,
                     pin: true,
                     scrub: 1,
-                    onUpdate: (self) => setActiveIdx(Math.min(Math.floor(self.progress * cards.length), cards.length - 1))
+
                 }
             });
             cards.forEach((card: any, i: number) => {
@@ -352,7 +352,7 @@ const Work: React.FC = () => {
 
     return (
         <section id="work-section" className="relative w-full bg-huge-white text-huge-black overflow-hidden z-20">
-            <div className="px-6 md:px-12 xl:px-24 py-[176px] md:py-[248px]">
+            <div className="px-6 md:px-12 xl:px-24 pt-[176px] pb-[88px] md:pt-[124px] md:pb-[124px]">
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-x-6">
                     <h2 className="js-title col-span-full text-[15vw] md:text-[12vw] font-bold tracking-tighter leading-none mb-16 uppercase">
                         Work <span className="hidden md:inline-block">—</span>
@@ -385,14 +385,7 @@ const Work: React.FC = () => {
                         </li>
                     ))}
                 </ul>
-                <div className="absolute bottom-12 left-6 md:left-12 xl:left-24 font-mono text-xl text-huge-white">
-                    W —
-                    <div className="inline-block relative overflow-hidden h-[1.2em] align-top ml-2">
-                        <div className="transition-transform duration-500" style={{ transform: `translateY(-${activeIdx * 100}%)` }}>
-                            {works.map((w) => <div key={w.id} className="h-full">{w.num}</div>)}
-                        </div>
-                    </div>
-                </div>
+
             </div>
             {selectedWork && <CaseStudyDetail work={selectedWork} onClose={() => setSelectedWork(null)} />}
             <div ref={cursorRef} className="fixed top-0 left-0 z-[100] pointer-events-none opacity-0 select-none mix-blend-difference">

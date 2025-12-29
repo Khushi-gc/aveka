@@ -63,10 +63,10 @@ const Hero: React.FC = () => {
                     end: "+=3000", // Long scroll distance for rotation
                     scrub: 0, // Instant response (direct scroll mapping)
                     pin: true,
-                    onUpdate: (self) => {
+                    onUpdate: () => {
                         const rotation = gsap.getProperty(squareRef.current, "rotationY") as number;
-                        const normalized = (rotation % 360 + 360) % 360;
-                        const absRot = Math.abs(rotation) + 1;
+                        const absRot = Math.abs(rotation);
+                        const angle = absRot % 360;
 
                         // 1. Front (0, 360): "Aveka.ai" -> "Khushi" - Change > 180
                         if (frontTextRef.current) {
@@ -91,8 +91,13 @@ const Hero: React.FC = () => {
                             videoContainerRef.current.style.opacity = absRot > 470 ? "1" : "0";
                         }
 
-                        // Set background to white when Right (270) or Back (180) face is visible
-                        if (normalized > 135 && normalized < 315) {
+                        // Background Color Logic
+                        // 0 (Front): Black BG
+                        // 90 (Right): White BG
+                        // 180 (Back): Black BG
+                        // 270 (Left): White BG
+                        // Ranges +/- 45 degrees
+                        if ((angle > 45 && angle < 135) || (angle > 225 && angle < 315)) {
                             setBgColor('white');
                         } else {
                             setBgColor('black');
@@ -183,15 +188,15 @@ const Hero: React.FC = () => {
                         className="relative w-32 h-32 md:w-48 md:h-48 [--face-depth:4rem] md:[--face-depth:6rem]"
                         style={{ transformStyle: 'preserve-3d' }}
                     >
-                        {/* Front Face - Pink */}
-                        <div className="absolute inset-0 bg-huge-magenta flex items-center justify-center"
+                        {/* Front Face - White (Text Black) - Matches Black BG context */}
+                        <div className="absolute inset-0 bg-white flex items-center justify-center"
                             style={{
                                 transform: 'translateZ(var(--face-depth))',
                                 backfaceVisibility: 'hidden'
                             }}>
                             <span ref={frontTextRef} className="text-black font-monument font-bold text-xl md:text-2xl">Aveka.ai</span>
                         </div>
-                        {/* Back Face - White (Holds "name" and Video) */}
+                        {/* Back Face - White (Text Black) - Matches Black BG context (alternating) */}
                         <div className="absolute inset-0 bg-white flex items-center justify-center backface-hidden"
                             style={{
                                 transform: 'rotateY(180deg) translateZ(var(--face-depth))'
@@ -211,31 +216,31 @@ const Hero: React.FC = () => {
                                 />
                             </div>
                         </div>
-                        {/* Right Face - White (Holds "my" and "Jain") */}
-                        <div className="absolute inset-0 bg-white flex items-center justify-center backface-hidden"
+                        {/* Right Face - Black (Holds "my" and "Jain") */}
+                        <div className="absolute inset-0 bg-black flex items-center justify-center backface-hidden"
                             style={{
                                 transform: 'rotateY(90deg) translateZ(var(--face-depth))'
                             }}>
-                            <span ref={rightTextRef} className="text-black font-monument font-bold text-xl md:text-2xl">my</span>
+                            <span ref={rightTextRef} className="text-white font-monument font-bold text-xl md:text-2xl">my</span>
                         </div>
-                        {/* Left Face - White */}
-                        <div className="absolute inset-0 bg-white flex items-center justify-center backface-hidden"
+                        {/* Left Face - Black (Text White) - Matches White BG context */}
+                        <div className="absolute inset-0 bg-black flex items-center justify-center backface-hidden"
                             style={{
                                 transform: 'rotateY(-90deg) translateZ(var(--face-depth))',
                                 backfaceVisibility: 'hidden'
                             }}>
-                            <span ref={leftTextRef} className="text-black font-monument font-bold text-xl md:text-2xl">Aveka.ai</span>
+                            <span ref={leftTextRef} className="text-white font-monument font-bold text-xl md:text-2xl">Aveka.ai</span>
                         </div>
-                        {/* Top Face - Pink */}
-                        <div className="absolute inset-0 bg-huge-magenta flex items-center justify-center"
+                        {/* Top Face - White */}
+                        <div className="absolute inset-0 bg-white flex items-center justify-center"
                             style={{
                                 transform: 'rotateX(90deg) translateZ(var(--face-depth))',
                                 backfaceVisibility: 'hidden'
                             }}>
                             <span className="text-black font-monument font-bold text-xl md:text-2xl">Aveka.ai</span>
                         </div>
-                        {/* Bottom Face - Pink */}
-                        <div className="absolute inset-0 bg-huge-magenta flex items-center justify-center"
+                        {/* Bottom Face - White */}
+                        <div className="absolute inset-0 bg-white flex items-center justify-center"
                             style={{
                                 transform: 'rotateX(-90deg) translateZ(var(--face-depth))',
                                 backfaceVisibility: 'hidden'
