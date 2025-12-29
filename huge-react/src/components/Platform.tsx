@@ -1,46 +1,122 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Platform: React.FC = () => {
+    const sectionRef = useRef<HTMLElement>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            // Animate content on scroll
+            gsap.fromTo(".js-platform-title div",
+                { opacity: 0, filter: 'blur(10px)', y: 30 },
+                {
+                    opacity: 1,
+                    filter: 'blur(0px)',
+                    y: 0,
+                    stagger: 0.1,
+                    duration: 1.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: ".js-platform-title",
+                        start: "top 85%",
+                    }
+                }
+            );
+
+            gsap.fromTo(".js-logo, .js-platform-desc",
+                { opacity: 0, filter: 'blur(10px)', y: 20 },
+                {
+                    opacity: 1,
+                    filter: 'blur(0px)',
+                    y: 0,
+                    duration: 1.2,
+                    stagger: 0.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: ".js-logo",
+                        start: "top 80%",
+                    }
+                }
+            );
+
+            // Parallel Parallax Effect on background
+            gsap.to(".js-bg-video-wrapper", {
+                yPercent: 15,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    scrub: true
+                }
+            });
+
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
+
+    const splitToWords = (text: string) => {
+        return text.split(' ').map((word, i) => (
+            <div key={i} className="relative inline-block mr-[0.3em] overflow-hidden">
+                <div className="relative inline-block">{word}</div>
+            </div>
+        ));
+    };
+
     return (
-        <section className="relative min-h-screen bg-huge-black text-huge-white py-40 flex flex-col items-center justify-start overflow-hidden">
-            {/* Background Video/Image Wrapper with Mask */}
-            <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+        <section ref={sectionRef} id="platform" className="relative w-full bg-huge-black text-huge-white py-[176px] md:py-[248px] overflow-hidden z-20">
+            {/* BACKGROUND VIDEO LAYER */}
+            <div className="js-bg-video-wrapper absolute inset-0 w-full h-full pointer-events-none z-0">
                 <div className="relative w-full h-full">
-                    {/* Placeholder for video - using an image with linear gradient mask to simulate the original effect */}
-                    <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
-                    <img
-                        src="https://res.cloudinary.com/hugeinc-web/image/upload/f_auto,c_limit,w_1920,q_auto/v1730126015/huge-live_xcok5j"
-                        alt="Background"
-                        className="w-full h-full object-cover opacity-60"
-                        style={{
-                            maskImage: "linear-gradient(to bottom, transparent 0%, black 40%, black 60%, transparent 100%)",
-                            WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 40%, black 60%, transparent 100%)"
-                        }}
+                    <video
+                        ref={videoRef}
+                        className="absolute inset-0 w-full h-full object-cover opacity-40"
+                        src="https://res.cloudinary.com/hugeinc-web/video/upload/f_auto:video/q_auto/v2/hugeinc-website/production/creative-capital-index/CreativeCapitalIndexHero_tlqbv5?_a=DATAg1eAZAA0"
+                        autoPlay loop muted playsInline
                     />
+                    <div className="absolute inset-0 bg-huge-black opacity-30"></div>
                 </div>
             </div>
 
-            <div className="relative z-10 w-full px-6 md:px-10 max-w-[1400px]">
-                <h3 className="text-[10vw] leading-none font-bold tracking-tighter mb-20">Powered by LIVE</h3>
-
-                <div className="flex flex-col md:flex-row gap-20 items-start">
-                    <div className="relative w-32 h-32 md:w-40 md:h-40">
-                        {/* Static Logo Image */}
-                        <img
-                            src="https://res.cloudinary.com/hugeinc-web/image/upload/f_auto,c_limit,w_640,q_auto/v1730126015/huge-live_xcok5j"
-                            alt="LIVE Logo"
-                            className="w-full h-full object-contain"
-                        />
+            {/* CONTENT GRID */}
+            <div className="relative z-10 px-6 md:px-12 xl:px-24">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-x-6">
+                    {/* Main Title */}
+                    <div className="col-span-full mb-[112px]">
+                        <h3 className="js-platform-title text-[12vw] md:text-[8vw] xl:text-[9vw] font-bold tracking-tighter leading-none flex flex-wrap">
+                            {splitToWords("Powered by LIVE")}
+                        </h3>
                     </div>
 
-                    <div className="flex flex-col gap-8 max-w-2xl">
-                        <p className="text-xl md:text-2xl text-huge-grayText font-medium">
-                            Living Intelligence Value Engine —<br /><br />
-                            LIVE uses AI to analyze billions of data points, delivering actionable, culture-driven insights for growth and engagement.
-                        </p>
+                    {/* Logo & Description */}
+                    <div className="col-span-full md:col-start-4 md:col-span-8 xl:col-start-6 xl:col-span-6 flex flex-col md:flex-row gap-x-16 items-start">
+                        <div className="js-logo shrink-0 w-[112px] h-[112px] mb-8 md:mb-0">
+                            <img
+                                src="https://res.cloudinary.com/hugeinc-web/image/upload/f_auto,c_limit,w_640,q_auto/v1730126015/huge-live_xcok5j"
+                                alt="Huge Live Logo"
+                                className="w-full h-full object-contain"
+                            />
+                        </div>
+                        <div className="js-platform-desc flex flex-col gap-y-6">
+                            <p className="text-2xl md:text-3xl xl:text-4xl font-medium leading-tight">
+                                Living Intelligence Value Engine <span className="text-huge-grayText">—</span>
+                            </p>
+                            <p className="text-xl md:text-2xl text-huge-grayText leading-relaxed">
+                                LIVE uses AI to analyze billions of data points, delivering actionable, culture-driven insights for growth and engagement.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            {/* DECORATIVE NOISE OVERLAY */}
+            <div className="absolute inset-0 pointer-events-none opacity-[0.03] z-[1]"
+                style={{ backgroundImage: "url('https://framerusercontent.com/images/6mcf62RlDfRfU61Yg5vb2pefpi4.png')", backgroundRepeat: 'repeat' }}
+            />
         </section>
     );
 };

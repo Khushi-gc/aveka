@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import WeBelieve from './components/WeBelieve';
@@ -12,7 +12,9 @@ import Newsletter from './pages/Newsletter';
 import WorkPage from './pages/WorkPage';
 import Platform from './components/Platform';
 import Partnerships from './components/Partnerships';
+import Footer from './components/Footer';
 import Loader from './components/Loader';
+import Journey from './components/Journey';
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -38,6 +40,7 @@ const Home = () => {
       {/* Main Content Scrolls Over Fixed Hero */}
       <main className="relative z-10 bg-huge-black min-h-screen">
         <WeBelieve />
+        <Journey />
         <Services />
         <Platform />
         <Partnerships />
@@ -51,19 +54,34 @@ function App() {
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
+    // Lenis Smooth Scroll
+    let lenis: any = null;
+    if ((window as any).Lenis) {
+      lenis = new (window as any).Lenis();
+
+      const raf = (time: number) => {
+        lenis?.raf(time);
+        requestAnimationFrame(raf);
+      };
+
+      requestAnimationFrame(raf);
+    }
+
     if (loading) {
-      // Lock scroll but keep scrollbar visible
       document.body.style.position = 'fixed';
       document.body.style.top = '0';
       document.body.style.width = '100%';
       document.body.style.overflowY = 'scroll';
     } else {
-      // Restore scroll
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.width = '';
       document.body.style.overflowY = '';
     }
+
+    return () => {
+      lenis?.destroy();
+    };
   }, [loading]);
 
   return (
@@ -86,24 +104,7 @@ function App() {
             <Route path="/work" element={<WorkPage />} />
           </Routes>
 
-          <footer className="bg-huge-black text-huge-white py-20 px-6 md:px-10 border-t border-gray-800 relative z-20">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end">
-              <div className="text-[15vw] font-bold leading-none tracking-tighter text-huge-magenta font-monument">Huge</div>
-              <div className="flex flex-wrap gap-8 mt-10 md:mb-4 text-xl font-medium">
-                <a href="#" className="hover:text-huge-magenta transition-colors">Linkedin</a>
-                <a href="#" className="hover:text-huge-magenta transition-colors">Instagram</a>
-                <a href="#" className="hover:text-huge-magenta transition-colors">Twitter</a>
-              </div>
-            </div>
-            <div className="mt-20 flex justify-between text-sm text-huge-grayText flex-wrap gap-4">
-              <span>© 2024 Huge</span>
-              <div className="flex gap-6">
-                <Link to="/legal-notices" className="hover:text-white">Legal Notices</Link>
-                <Link to="/newsletter" className="hover:text-white">Newsletter</Link>
-                <span>Privacy Policy</span>
-              </div>
-            </div>
-          </footer>
+          <Footer />
         </div>
       )}
     </Router>

@@ -1,6 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import avekaLogo from '../assets/Aveka logo-03.png';
+
+const Clock = () => {
+    const [time, setTime] = useState(new Date());
+
+    useEffect(() => {
+        const interval = setInterval(() => setTime(new Date()), 1000);
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <span>{time.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true })}</span>
+    );
+};
 
 const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -56,15 +69,23 @@ const Navbar: React.FC = () => {
                 </div>
 
                 {/* Logo - Leftmost Side (moved by flex-row-reverse) */}
-                <Link to="/" className="pointer-events-auto relative z-10 hover:opacity-90 transition-opacity">
-                    <div className="flex w-[100px] h-[100px] items-center justify-center bg-[#ff5500] p-4">
-                        <img
-                            src={avekaLogo}
-                            alt="Aveka Logo"
-                            className="w-full h-full object-contain"
-                        />
+                <div className="flex items-start gap-10 pointer-events-auto">
+                    <Link to="/" className="relative z-10 hover:opacity-90 transition-opacity">
+                        <div className="flex w-[100px] h-[100px] items-center justify-center bg-[#ff5500] p-4">
+                            <img
+                                src={avekaLogo}
+                                alt="Aveka Logo"
+                                className="w-full h-full object-contain"
+                            />
+                        </div>
+                    </Link>
+
+                    {/* Live Clock / Location Info */}
+                    <div className="hidden lg:flex flex-col mt-4 font-mono text-sm opacity-60">
+                        <span className="uppercase tracking-widest font-bold">New York, NY</span>
+                        <Clock />
                     </div>
-                </Link>
+                </div>
             </nav>
         </header>
     );
