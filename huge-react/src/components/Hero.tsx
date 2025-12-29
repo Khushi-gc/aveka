@@ -108,7 +108,8 @@ const Hero: React.FC = () => {
                 ease: "none"
             })
                 .to(squareRef.current, {
-                    scale: 50,
+                    width: "100vw",
+                    height: "100vh",
                     duration: 2,
                     ease: "power2.in"
                 })
@@ -133,7 +134,7 @@ const Hero: React.FC = () => {
     // Mouse tracking removed to prevent interference with video zoom
 
     return (
-        <section ref={containerRef} className="fixed inset-0 h-screen w-full z-0 overflow-hidden text-white transition-colors duration-700"
+        <section ref={containerRef} className="relative h-screen w-full z-0 overflow-hidden text-white transition-colors duration-700"
             style={{ backgroundColor: bgColor }}>
 
 

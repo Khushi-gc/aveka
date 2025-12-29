@@ -4,8 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RedoMedia Split-Card Scroll Animation | Codegrid</title>
+    <title>Huge Inc. - High Fidelity Animation</title>
+    <!-- Fonts -->
     <link rel="stylesheet" href="s.css">
+
+    <style>
+        /* Re-adding Split Image Background Logic here for safety */
+        .card-front {
+            background-image: url("https://images.unsplash.com/photo-1541883832014-3d922579b699?auto=format&fit=crop&q=80&w=2600");
+            background-size: 300% 100%;
+            background-repeat: no-repeat;
+        }
+
+        #card-1 .card-front {
+            background-position: 0% 50%;
+        }
+
+        #card-2 .card-front {
+            background-position: 50% 50%;
+        }
+
+        #card-3 .card-front {
+            background-position: 100% 50%;
+        }
+    </style>
 </head>
 
 <body>
@@ -15,37 +37,116 @@
 
     <section class="sticky">
         <div class="sticky-header">
-            <h1>Three pillars with one purpose</h1>
+            <h1>
+                <span style="font-family: 'Instrument Serif', serif;">Where are you</span>
+                <span style="font-family: 'Instrument Serif', serif; font-style: italic;">in</span>
+                <span style="font-family: 'Instrument Serif', serif;">your journey?</span>
+            </h1>
         </div>
 
         <div class="card-container">
+            <!-- CARD 1 -->
             <div class="card" id="card-1">
-                <div class="card-front">
-                    <img src="image.png" alt="">
-                </div>
+                <div class="card-front"></div>
                 <div class="card-back">
-                    <span>01</span>
-                    <p>Interactive Web Experiences</p>
+                    <!-- High Fidelity Content for Card 1 -->
+                    <div
+                        style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: space-between; --border-bottom-width: 2px; --border-color: rgba(0, 0, 0, 0.2); --border-left-width: 2px; --border-right-width: 2px; --border-style: solid; --border-top-width: 2px; background: linear-gradient(165.825deg, rgb(199, 199, 199) 0%, rgb(131, 131, 131) 100%); padding: 2rem; box-sizing: border-box; position: relative; overflow: hidden;">
+                        <div style="width: 40px; height: 40px; opacity: 0.6; color: rgb(0, 0, 0);">
+                            <svg viewBox="0 0 38 38" style="width: 100%; height: 100%; fill: currentColor;">
+                                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" />
+                            </svg>
+                        </div>
+                        <div style="opacity: 0.8; margin-top: auto; margin-bottom: 1rem;">
+                            <p
+                                style="font-family: 'Roboto', sans-serif; font-size: 2rem; line-height: 1.1; margin: 0; color: #000;">
+                                Going</p>
+                            <p
+                                style="font-family: 'Roboto', sans-serif; font-size: 2rem; line-height: 1.1; margin: 0; color: #000;">
+                                Zero to One</p>
+                        </div>
+                        <div style="opacity: 0.6;">
+                            <p
+                                style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; line-height: 1.4; margin: 0; color: #000;">
+                                If you’re navigating a new business unit, or a new venture entirely, or breaking into a
+                                new market</p>
+                        </div>
+                        <div
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.25; background-image: url('https://framerusercontent.com/images/6mcf62RlDfRfU61Yg5vb2pefpi4.png'); background-repeat: repeat; background-size: 128px auto;">
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <!-- CARD 2 -->
             <div class="card" id="card-2">
-                <div class="card-front">
-                    <img src="image.png" alt="">
-                </div>
+                <div class="card-front"></div>
                 <div class="card-back">
-                    <span>02</span>
-                    <p>Thoughtful Design Language</p>
+                    <!-- High Fidelity Content for Card 2 -->
+                    <div
+                        style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: space-between; --border-bottom-width: 2px; --border-color: rgba(255, 255, 255, 0.12); --border-left-width: 2px; --border-right-width: 2px; --border-style: solid; --border-top-width: 2px; background: linear-gradient(rgb(250, 76, 45) -8%, rgb(211, 26, 22) 31%, rgb(74, 10, 8) 100%); padding: 2rem; box-sizing: border-box; position: relative; overflow: hidden;">
+                        <div style="width: 40px; height: 40px; opacity: 0.7; color: rgba(0,0,0,1);">
+                            <svg viewBox="0 0 32 32" style="width: 100%; height: 100%; fill: currentColor;">
+                                <circle cx="12" cy="7" r="2.5" />
+                                <circle cx="7" cy="16" r="2.5" />
+                                <circle cx="17" cy="16" r="2.5" />
+                            </svg>
+                        </div>
+                        <div style="opacity: 0.85; margin-top: auto; margin-bottom: 1rem;">
+                            <p
+                                style="font-family: 'Roboto', sans-serif; font-size: 2rem; line-height: 1.1; margin: 0; color: #fff;">
+                                Scaling from</p>
+                            <p
+                                style="font-family: 'Roboto', sans-serif; font-size: 2rem; line-height: 1.1; margin: 0; color: #fff;">
+                                One to N</p>
+                        </div>
+                        <div style="opacity: 0.6;">
+                            <p
+                                style="font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.4; margin: 0; color: rgb(234, 231, 224);">
+                                If you’ve achieved Product / Service Market Fit are looking to scale your business to
+                                new heights</p>
+                        </div>
+                        <div
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.1; background-image: url('https://framerusercontent.com/images/6mcf62RlDfRfU61Yg5vb2pefpi4.png'); background-repeat: repeat; background-size: 128px auto;">
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <!-- CARD 3 -->
             <div class="card" id="card-3">
-                <div class="card-front">
-                    <img src="image.png" alt="">
-                </div>
+                <div class="card-front"></div>
                 <div class="card-back">
-                    <span>03</span>
-                    <p>Visual Design Systems</p>
+                    <!-- High Fidelity Content for Card 3 -->
+                    <div
+                        style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(188.698deg, rgb(33, 33, 33) 0%, rgb(20, 20, 20) 100%);  box-shadow: rgb(0, 0, 0) 0px 24px 65px 0px, rgba(255, 255, 255, 0.3) 0px 1px 2px 0px inset; padding: 2rem; box-sizing: border-box; position: relative; overflow: hidden;">
+                        <div style="width: 40px; height: 40px; opacity: 0.6; color: rgb(234,231,224);">
+                            <svg viewBox="0 0 39 38"
+                                style="width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.6;">
+                                <path d="M15 4l-2 2 4 4 2-2-4-4z" />
+                                <path d="M8 11l-5 5 3 3 5-5" />
+                                <line x1="19" y1="2" x2="19" y2="2" stroke-width="3" />
+                                <line x1="15" y1="2" x2="15" y2="2" stroke-width="3" />
+                            </svg>
+                        </div>
+                        <div style="opacity: 0.8; margin-top: auto; margin-bottom: 1rem;">
+                            <p
+                                style="font-family: 'Roboto', sans-serif; font-size: 2rem; line-height: 1.1; margin: 0; color: rgb(234, 231, 224);">
+                                Need Quick</p>
+                            <p
+                                style="font-family: 'Roboto', sans-serif; font-size: 2rem; line-height: 1.1; margin: 0; color: rgb(234, 231, 224);">
+                                Solutions</p>
+                        </div>
+                        <div style="opacity: 0.6;">
+                            <p
+                                style="font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.4; margin: 0; color: rgb(234, 231, 224);">
+                                If you know exactly what you want and need a team that can step-in and quickly help you
+                                with it</p>
+                        </div>
+                        <div
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.25; background-image: url('https://framerusercontent.com/images/6mcf62RlDfRfU61Yg5vb2pefpi4.png'); background-repeat: repeat; background-size: 128px auto;">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,7 +159,119 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.0.42/lenis.min.js"></script>
-    <script src="s.js"></script>
+    <!-- Framer Appear Animation Logic -->
+    <script src="animator.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            const lenis = new Lenis();
+            lenis.on("scroll", ScrollTrigger.update);
+            gsap.ticker.add((time) => {
+                lenis.raf(time * 1000);
+            });
+            gsap.ticker.lagSmoothing(0);
+
+            const cardContainer = document.querySelector(".card-container");
+            const stickyHeader = document.querySelector(".sticky-header h1");
+
+            let isGapAnimationCompleted = false;
+            let isFlipAnimationCompleted = false;
+
+            function initAnimations() {
+                ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+
+                const mm = gsap.matchMedia();
+
+                mm.add("(max-width: 999px)", () => {
+                    document
+                        .querySelectorAll(".card, .card-container, .sticky-header h1")
+                        .forEach((el) => (el.style = ""));
+                    return {};
+                });
+
+                mm.add("(min-width: 1000px)", () => {
+                    // ENTRANCE ANIMATIONS (Load-triggered, matching Framer JSON)
+                    // Header: y: -150 -> 0, opacity: 1, duration: 1.2, spring-like
+                    gsap.to(".sticky-header h1", {
+                        y: 0,
+                        opacity: 1,
+                        duration: 1.2,
+                        ease: "power3.out", // Approximate overdamped spring
+                        delay: 0.2
+                    });
+
+                    // Container: scale: 0.9 -> 1, opacity: 1, duration: 1.6
+                    gsap.to(cardContainer, {
+                        scale: 1,
+                        opacity: 1,
+                        duration: 1.6,
+                        ease: "power3.out",
+                        delay: 0.1
+                    });
+
+                    // SCROLL ANIMATIONS (Transformation Sequence)
+                    const tl = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: ".sticky",
+                            start: "top top",
+                            end: `+=${window.innerHeight * 4}px`,
+                            scrub: 0.8, // Tuned time to match animator spring damping
+                            pin: true,
+                            pinSpacing: true
+                        }
+                    });
+
+                    // 1. Width Reduction & Prep (Split start)
+                    tl.to(cardContainer, {
+                        width: "60%",
+                        duration: 2,
+                        ease: "power2.out"
+                    });
+
+                    // 2. Gap & Border Radius
+                    tl.to(cardContainer, {
+                        gap: "20px",
+                        duration: 1,
+                        ease: "power2.inOut"
+                    })
+                        .to(["#card-1", "#card-2", "#card-3"], {
+                            borderRadius: "20px",
+                            duration: 1,
+                            ease: "power2.inOut"
+                        }, "<");
+
+                    // 3. Card Flip & Spread
+                    tl.to(".card", {
+                        rotationY: 180,
+                        duration: 2,
+                        stagger: 0.2,
+                        ease: "power2.inOut"
+                    })
+                        .to(["#card-1", "#card-3"], {
+                            y: 30,
+                            rotationZ: (i) => i === 0 ? -15 : 15,
+                            duration: 2,
+                            ease: "power2.inOut"
+                        }, "<");
+
+                    // Add a small buffer at the end
+                    tl.to({}, { duration: 1 });
+                });
+            }
+
+            initAnimations();
+
+            let resizeTimer;
+            window.addEventListener("resize", () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    initAnimations();
+                }, 250);
+            });
+        });
+    </script>
 </body>
 
 </html>

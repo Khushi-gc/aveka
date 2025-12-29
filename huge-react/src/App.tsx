@@ -36,7 +36,7 @@ const Home = () => {
     <div className="font-monument antialiased selection:bg-huge-magenta selection:text-white">
       <Hero />
       {/* Main Content Scrolls Over Fixed Hero */}
-      <main className="relative z-10 top-[100vh] bg-huge-black min-h-screen">
+      <main className="relative z-10 bg-huge-black min-h-screen">
         <WeBelieve />
         <Services />
         <Platform />
